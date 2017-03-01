@@ -9,21 +9,16 @@
 {% block content %}
     <main class="container left-container">
         <div class="row">
-
             {% include 'blog/menu.html' %}
-
             <section class="sidebar col-md-6 col-sm-12" >
-
                 <span class="menu-trigger animated fadeInDown">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </span>
-
                 <div class="sub-nav">
-                    <a href="#"> Latest Posts</a>
+                    <a>Latest Posts</a>
                 </div>
-
                 <div class=" animated fadeIn ">
                     {% for post in posts %}
                         <article class="post">
@@ -36,15 +31,11 @@
                         </article>
                     {% endfor %}
                 </div><!-- Home page posts -->
-
             </section><!-- end sidebar -->
-
             <section class="col-md-6 col-sm-12 col-md-offset-6 alt-main">
-
                 <div class="sub-nav">
-                    <a href="#" >Categories</a>
+                    <a>Categories</a>
                 </div>
-
                 <div class="home-page-categories animated fadeIn ">
                     <div class="category row">
                         <section>
@@ -62,10 +53,7 @@
                     <i class="link-spacer"></i>
                     <a href="/page">Writer 2017</a>
                 </footer>
-
             </section><!-- main content -->
-
         </div> <!--/row -->
-
     </main> <!-- /container -->
 {% endblock %}

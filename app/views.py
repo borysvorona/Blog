@@ -63,9 +63,8 @@ def contactpage(request):
         if form.is_valid():
             contact = form.save(commit=False)
             contact.save()
-            #message about successful saving
-            messages.success(request, "Successfully saved")
-            return HttpResponseRedirect('')
+            messages.add_message(request, messages.SUCCESS, 'Successfully saved')
+            return redirect('contactpage')
     else:
         form = ContactForm()
     return render(request, 'blog/contact.html', {'form': form})

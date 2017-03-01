@@ -1,8 +1,7 @@
 {% extends 'blog/extend.html' %}
 {% load staticfiles %}
-
 {% block title %}
-        <title>Writer Theme | Category</title>
+    <title>Writer Theme | Category</title>
 {% endblock %}
 {% block body %}
     <body>
@@ -10,32 +9,24 @@
 {% block content %}
     <main class="container left-container">
         <div class="row">
-
             {% include 'blog/menu.html' %}
-
             <section class="sidebar category-sidebar col-md-5 col-sm-12" style=" background-image: url('{{ category.image.url }}');">
-
                 <span class="menu-trigger animated fadeInDown">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </span>
-
                 <div class="site-info">
                     <div class="primary-info">
                     <h1>{{ category.title }}</h1>
                         <p>A place to share stories, welcome to the campfire.</p>
                     </div>
                 </div>
-
             </section>
-
             <section class="col-md-7 col-sm-12 col-md-offset-5 main-content">
-
                 <div class="sub-nav">
-                    <a href="#" class="select-posts active">Posts</a>
+                    <a class="select-posts active">Posts</a>
                 </div>
-
                 <div class="category-page-posts animated fadeIn ">
                     {% if posts %}
                         {% for post in posts %}
@@ -55,7 +46,6 @@
                     {% else %}
                         <h2>The category has not records yet</h2>
                     {% endif %}
-
                 </div><!-- Category page posts -->
             </section><!-- main content -->
         </div> <!--/row -->

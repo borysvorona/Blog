@@ -1,9 +1,8 @@
 {% extends 'blog/extend.html' %}
 {% load staticfiles %}
 {% load widget_tweaks %}
-
 {% block title %}
-        <title>Writer Theme | Contact</title>
+    <title>Writer Theme | Contact</title>
 {% endblock %}
 {% block body %}
     <body>
@@ -11,31 +10,23 @@
 {% block content %}
     <main class="container left-container">
         <div class="row">
-
             {% include 'blog/menu.html' %}
-
             <section class="sidebar col-md-5 col-sm-12" style="background-image: url('{% static "img/default-contact.jpg" %}');">
-
                 <span class="menu-trigger animated fadeInDown">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </span>
-
                 <div class="site-info">
                     <div class="primary-info">
                     <h1>Contact</h1>
                         <p>Our team would love to hear from you. We're here for a quick chat, a lengthy discussion or perhaps just a hey.</p>
-
                     </div>
                     <div class="secondary-info">
-
                         <p><a class="btn btn-default" href="#"><i class="fa fa-user-plus"></i>Newsletter Signup</a>
                     </div>
                 </div>
-
             </section>
-
             <div class="col-md-7 col-sm-12 col-md-offset-5 main-content">
                 <h3>Contact our Team</h3>
                 <form method="POST">{% csrf_token %}
@@ -61,6 +52,5 @@
                 </footer>
             </div><!-- main content -->
         </div> <!--/row -->
-
     </main> <!-- /container -->
 {% endblock %}
