@@ -1,0 +1,109 @@
+{% extends 'blog/extend.html' %}
+{% load staticfiles %}
+
+{% block title %}
+        <title>Writer Post</title>
+{% endblock %}
+{% block body %}
+    <body>
+{% endblock %}
+{% block content %}
+    <header class="hero-image" role="banner" style="background-image: url('{% static "img/default-single-hero-with-sidebar.jpg" %}');">
+
+        <span class="menu-trigger animated fadeInDown">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </span>
+        {% include 'blog/menu.html' %}
+    </header>
+
+    <main class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 single-content-sidebar">
+
+
+                <h1>{{ post.title }}</h1>
+
+                <p class="subtitle">{{ post.summary }}</p>
+
+                <p>{{ post.text }}</p>
+
+
+            </div><!-- main-content/col -->
+            <div class="col-xs-12 col-md-3 col-md-offset-1 single-content-sidebar-area">
+
+                <img src="{{ post.author.image.url }}" class="user-icon " alt="user-image">
+                <div class="meta">
+
+                    <div class="sidebar-info">
+                        <a href="{% url 'author_detail' pk=post.author.pk %}">{{ post.author.name }} {{ post.author.surname }}</a> in <a href="{% url 'category_detail' pk=post.category.pk %}">{{ post.category.title }}</a>
+                    </div>
+
+                    <div class="sidebar-readtime">
+                        <i class="fa fa-bookmark"></i> {{ post.minute_read }} minute read
+                    </div>
+
+                </div>
+
+                <h2 class="favorites">Similar Categories</h2>
+                {% for category in categories %}
+                    <a href="{% url 'category_detail' pk=category.pk %}" >
+                        <div class="similar-cat">
+                            <img src="{{ category.image.url }}">
+                            <h3>{{ category.title }}</h3>
+                        </div>
+                    </a>
+                {% endfor %}
+
+                <h2 class="favorites">Similar Posts</h2>
+                    {% for post in posts %}
+                        <div class="similar-post">
+                            <a href="{% url 'post_detail' pk=post.pk %}"><h3>{{ post.title }}</h3></a>
+                        </div>
+                    {% endfor %}
+            </div>
+        </div> <!--/row -->
+
+    </main> <!-- /container -->
+
+    <footer class="single without-readmore">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">
+                    <img src="{{ post.author.image.url }}" class="user-icon " alt="user-image">
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="category-list">
+                        <p>Published <span>{{ post.created_date }}</span></p>
+                        <p><a href="{% url 'author_detail' pk=post.author.pk %}">{{ post.author.name }} {{ post.author.surname }}</a> in <a href="{% url 'category_detail' pk=post.category.pk %}">{{ post.category.title }}</a></p>
+
+                        <div class="other-catergories">
+                            <h3>Also found in</h3>
+                            <ul>
+                                {% for category in categories %}
+                                    <li><a href="{% url 'category_detail' pk=category.pk %}">{{ category.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div><!-- end col -->
+                <div class="col-xs-12 col-sm-4">
+                    <div class="social">
+                        <p>Share this article</a>
+                        <div class="social-links">
+                            <a class="social-icon" href="#" data-platform="twitter" data-message="Message about this post" data-url="http://writertheme.com/post"><i class="fa fa-twitter"></i></a>
+
+                            <a class="social-icon" href="#" data-platform="facebook" data-message="Message about this post" data-url="http://writertheme.com/post"><i class="fa fa-facebook-official"></i></a>
+
+                            <a class="social-icon" data-platform="mail"  href="mailto:support@writertheme.com"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end row -->
+        </div>
+
+    </footer>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'blog/extend.html' %}
+{% load staticfiles %}
+
+{% block title %}
+        <title>Writer Theme | Home</title>
+{% endblock %}
+{% block body %}
+    <body>
+{% endblock %}
+{% block content %}
+     <main class="container left-container">
+         <div class="row">
+
+                {% include 'blog/menu.html' %}
+
+                <section class="sidebar col-md-5 col-sm-12" style="background-image: url('{% static "img/default-sidebar.jpg" %}');">
+
+                    <span class="menu-trigger animated fadeInDown">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </span>
+
+                    <div class="site-info">
+                        <div class="primary-info">
+                            <h1>Writer</h1>
+                            <p>A minimal blogging theme to put your content on show. <a href="/page">Look at the features.</a> </p>
+
+                            <p>Content is king</p>
+                        </div>
+                        <div class="secondary-info">
+                            <p>
+                                <a class="btn btn-primary" href="#"><i class="fa fa-user-plus"></i>Join Our Newsletter</a>
+                            </p>
+                        </div>
+                    </div>
+                </section><!-- end sidebar -->
+
+                <section class="col-md-7 col-sm-12 col-md-offset-5 main-content">
+
+                    <div class="sub-nav">
+                        <a href="#" class="select-posts active">Posts</a>
+                        <a href="#" class="select-categories">Categories</a>
+                    </div>
+
+                    <div class="home-page-posts animated fadeIn ">
+                        {% for post in posts %}
+                            <article class="post">
+                                <div class="post-preview col-xs-10  no-gutter">
+                                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                                    <p>{{ post.summary }} </p>
+                                    <p class="meta">
+                                        <a href="{% url 'author_detail' pk=post.author.pk %}">{{ post.author.name }} {{ post.author.surname }}</a> in <a href="{% url 'category_detail' pk=post.category.pk %}">{{ post.category.title }}</a> <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> {{ post.minute_read }} minute read
+                                    </p>
+                                </div>
+                                <div class=" col-xs-2  no-gutter">
+                                    <img src="{{ post.author.image.url }}" class="user-icon" alt="user-image">
+                                </div>
+                            </article>
+                        {% endfor %}
+
+                    </div><!-- Home page posts -->
+
+                    <div class="home-page-categories hide animated fadeIn ">
+                        <div class="category row">
+                            <section>
+                                {% for category in categories %}
+                                    <div class="category-preview col-xs-6 col-sm-4 ">
+                                        <h2>{{ category.title }}</h2>
+                                        <a href="{% url 'category_detail' pk=category.pk %}"><img src="{{ category.image.url }}" alt="category-image"></a>
+                                    </div>
+                                {% endfor %}
+                            </section>
+                        </div>
+                    </div>
+
+                    <footer class="split-footer">
+                        <a href="/page">About</a>
+                        <i class="link-spacer"></i>
+                        <a href="/page">Writer 2017</a>
+                    </footer>
+
+                </section><!-- main content -->
+
+            </div> <!--/row -->
+     </main> <!-- /container -->
+{% endblock %}

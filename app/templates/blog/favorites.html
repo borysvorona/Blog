@@ -1,0 +1,76 @@
+{% extends 'blog/extend.html' %}
+{% load staticfiles %}
+
+{% block title %}
+        <title>Writer Theme | Favorites</title>
+{% endblock %}
+{% block body %}
+    <body>
+{% endblock %}
+{% block content %}
+    <main class="container left-container">
+
+        <div class="row">
+
+            {% include 'blog/menu.html' %}
+
+            <section class="sidebar col-md-5 col-sm-12" style="background-image: url('{% static "img/default-favorites-sidebar.jpg" %}')">
+
+                <span class="menu-trigger animated fadeInDown">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </span>
+
+                <div class="site-info">
+                    <div class="primary-info">
+                    <h1>Writer</h1>
+                        <p>A minimal blogging theme to put your content on show. <a href="/page">Look at the features.</a> </p>
+
+                        <p>Content is king</p>
+                    </div>
+                    <div class="secondary-info">
+
+                        <p><a class="btn btn-primary" href="#"><i class="fa fa-user-plus"></i>Newsletter Signup</a>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <div class="col-md-7 col-sm-12 col-md-offset-5 main-content">
+                <section class="row">
+                    <div class="col-sm-12">
+                        <h2 class="favorites">Favorite posts</h2>
+                    </div>
+                        {% for post in posts %}
+                            <article class="post-favorite col-xs-12 col-sm-6 ">
+                                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                                <p>{{ post.summary }} </p>
+                            </article>
+                        {% endfor %}
+                </section><!-- end fav posts -->
+
+                <section class="row favorite-categories animated fadeIn">
+                    <div class="col-sm-12">
+                        <h2 class="favorites">Favorite categories</h2>
+                    </div>
+                        {% for category in categories %}
+                            <div class="category-preview col-xs-6 col-sm-4 ">
+                                <h2>{{ category.title }}</h2>
+                                <a href="{% url 'category_detail' pk=category.pk %}"><img src="{{ category.image.url }}" alt="category-image"></a>
+                            </div>
+                        {% endfor %}
+                </section>
+
+                <footer class="split-footer">
+                    <a href="/page">About</a>
+                    <i class="link-spacer"></i>
+                    <a href="/page">Writer 2017</a>
+                </footer>
+            </div><!-- main content -->
+
+        </div> <!--/row -->
+
+    </main> <!-- /container -->
+{% endblock %}

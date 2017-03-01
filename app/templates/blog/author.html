@@ -1,0 +1,82 @@
+{% extends 'blog/extend.html' %}
+{% load staticfiles %}
+
+{% block title %}
+        <title>Writer Theme | Author</title>
+{% endblock %}
+{% block body %}
+    <body class="alt-home">
+{% endblock %}
+{% block content %}
+    <main class="container left-container">
+        <div class="row">
+
+            {% include 'blog/menu.html' %}
+
+            <section class="sidebar col-md-5 col-sm-12" style="background-image: url('{% static "img/default-author.jpg" %}');">
+
+                <span class="menu-trigger animated fadeInDown">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </span>
+
+                <div class="site-info">
+                    <div class="primary-info">
+                    <h1>{{ author.name }} {{ author.surname }}</h1>
+                        <p>Just a friendly writer, busy typing away to feed hungry eyes. </p>
+                    </div>
+                    <div class="secondary-info">
+
+                        <p><a class="btn btn-default" href="/contact"><i class="fa fa-paper-plane"></i>Contact Us</a>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="col-md-7 col-sm-12 col-md-offset-5 main-content">
+
+                <div class="author-bio">
+
+                    <img src="{{ author.image.url }}">
+
+                    <div class="author-bio__info">
+                        <h1>{{ author.name }} {{ author.surname }}</h1>
+                        <p>{{ author.about }}</p>
+                    </div>
+                </div>
+                <p>
+
+                <h2 class="favorites">Most recommended posts</h2>
+
+                <div class="posts-block animated fadeIn ">
+                    {% for post in posts %}
+                        <article class="post author-page">
+                            <div class="post-preview col-xs-10  no-gutter">
+                                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                                <p>{{ post.summary }}</p>
+                            </div>
+                            <div class="col-sm-3 col-md-1 col-md-offset-1 hidden-sm hidden-xs no-gutter">
+                                <p class="meta">
+                                    <span class="time"><i class="fa fa-bookmark"></i> {{ post.minute_read }}</span>
+                                    <span class="min">minutes</span>
+                                </p>
+                            </div>
+                        </article>
+                    {% endfor %}
+
+                    <div class="view-all-by-author">
+                        <a href="/">View All Post by {{ author.name }} <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <footer class="split-footer">
+                    <a href="/page">About</a>
+                    <i class="link-spacer"></i>
+                    <a href="/page">Writer 2017</a>
+                </footer>
+            </div><!-- main content -->
+        </div> <!--/row -->
+
+    </main> <!-- /container -->
+{% endblock %}
