@@ -14,26 +14,17 @@ class Post(models.Model):
             default=timezone.now)
 
     def __str__(self):
-        return  '{0} {1} {2} {3} {4} {5}'.format(self.author.name,
-                                     self.author.surname,
-                                     self.category.title,
-                                     self.title,
-                                     self.summary,
-                                     self.minute_read)
+        return self.title
 
 class Contact(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     company = models.TextField(max_length=50)
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=12)
     message = models.TextField()
 
     def __str__(self):
-        return  '{0} {1} {2} {3} {4}'.format(self.name,
-                                     self.email,
-                                     self.company,
-                                     self.phone,
-                                     self.message)
+        return self.email
 
 class Category(models.Model):
     title = models.TextField(max_length=50, unique=True)
@@ -50,6 +41,4 @@ class Author(models.Model):
     image = models.ImageField(upload_to='img')
 
     def __str__(self):
-        return  '{0} {1} {2}'.format(self.name,
-                                     self.surname,
-                                     self.image)
+        return self.surname
