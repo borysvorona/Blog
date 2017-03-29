@@ -57,16 +57,19 @@ def category_detail(request, pk):
                                                             'posts': posts})
 
 def contactpage(request):
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            contact = form.save(commit=False)
-            contact.save()
-            #messages.add_message(request, messages.SUCCESS, 'Successfully saved')
-            return redirect('contactpage')
-    else:
-        form = ContactForm()
-    return render(request, 'blog/contact.html', {'form': form})
+
+    form = ContactForm(request.POST or None)
+
+    print (form.is_valid())
+    print (form.errors)
+    if form.is_valid():
+        contact = form.save(commit=False)
+        contact.save()
+        #messages.add_message(request, messages.SUCCESS, 'Successfully saved')
+        return redirect('contactpage')
+
+    return render(request, 'blog/contact.html',
+                  {'form': form})
 
 def post_sidebar(request):
     post = Post.objects.get(author__main=True)

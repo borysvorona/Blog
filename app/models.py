@@ -18,9 +18,9 @@ class Post(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length=50)
-    email = models.EmailField()
+    email = models.EmailField(null=True, blank=True)
     company = models.CharField(max_length=50)
-    phone = models.CharField(max_length=12)
+    phone = models.CharField(max_length=13, null=True, blank=True)
     message = models.TextField()
 
     def __str__(self):

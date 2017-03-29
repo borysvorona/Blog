@@ -1,3 +1,4 @@
+import re
 from django import forms
 from .models import Contact
 
@@ -13,7 +14,7 @@ class ContactForm(forms.ModelForm):
                        'class' : 'form-control', 'type' : 'text'}
             ),
             'email': forms.TextInput(
-                attrs={'id': 'id_email', 'required': True,
+                attrs={'id': 'id_email',
                        'placeholder': 'E-Mail Address',
                        'class': 'form-control', 'type': 'text'}
             ),
@@ -23,7 +24,7 @@ class ContactForm(forms.ModelForm):
                        'class': 'form-control', 'type': 'text'}
             ),
             'phone': forms.TextInput(
-                attrs={'id': 'id_phone', 'required': True,
+                attrs={'id': 'id_phone',
                        'placeholder': '(845)555-1212',
                        'class': 'form-control', 'type': 'text'}
             ),
@@ -33,3 +34,22 @@ class ContactForm(forms.ModelForm):
                        'class': 'form-control', 'type': 'text'}
             ),
         }
+
+    def clean(self):
+        cleaned_data = super(ContactForm, self).clean()
+        phone = cleaned_data.get("phone")
+        email = cleaned_data.get("email")
+
+        if not phone and not email:
+            raise forms.ValidationError("Enter phone or email")
+
+        return cleaned_data
+
+    def clean_phone(self):
+        data = self.cleaned_data['phone']
+        rule = re.compile(r'^(?:\+?44)?[07]\d{9,13}$')
+        if data:
+            if not rule.search(data):
+                raise forms.ValidationError("Invalid phone number")
+
+        return data

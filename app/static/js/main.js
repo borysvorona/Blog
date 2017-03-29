@@ -105,7 +105,7 @@ $(document).ready(function(){
 });
 
 
-//Contact Validator
+// Contact Validator
 $(document).ready(function() {
     $('#contact_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -178,7 +178,7 @@ $(document).ready(function() {
                 $('#success_message').hide();
              }, 4000);
              $('#contact_form').data('bootstrapValidator').resetForm();
-             $('#contact_form').bootstrapValidator('resetForm', true);
+
             // $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
             //     $('#contact_form').data('bootstrapValidator').resetForm();
 
@@ -195,5 +195,6 @@ $(document).ready(function() {
             $.post($form.attr('action'), $form.serialize(), function(result) {
                 console.log(result);
             }, 'json');
+            $('#contact_form').bootstrapValidator('resetForm', true);
         });
     });
