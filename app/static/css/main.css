@@ -1579,18 +1579,6 @@ form label {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-size: 2rem;
-  margin: 15px 0 0;
-}
-/* line 9, ../sass/partials/_contact.sass */
-form input.form-control,
-form textarea.form-control {
-  border: solid 0px transparent;
-  box-shadow: none;
-  border-bottom: solid 3px;
-  border-radius: 0;
-  padding: 5px 0;
-  background-color: #fff;
-  resize: vertical;
 }
 /* line 43, ../sass/_mixins.sass */
 form input.form-control::-webkit-input-placeholder,
@@ -1931,10 +1919,10 @@ form input[type=submit]:hover {
 }
 
 /* line 42, ../sass/main.sass */
-html,
-body {
-  font-size: 62.5%;
-}
+/*html,*/
+/*body {*/
+  /*font-size: 62.5%;*/
+/*}*/
 @media (min-width: 992px) {
   /* line 42, ../sass/main.sass */
   html,
@@ -1971,3 +1959,5 @@ a:hover, a:active, a:focus {
   color: #333;
   border-bottom: solid 1px #999;
 }
+
+#success_message{ display: none;}

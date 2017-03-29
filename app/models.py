@@ -19,7 +19,7 @@ class Post(models.Model):
 class Contact(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
-    company = models.TextField(max_length=50)
+    company = models.CharField(max_length=50)
     phone = models.CharField(max_length=12)
     message = models.TextField()
 

@@ -62,7 +62,7 @@ def contactpage(request):
         if form.is_valid():
             contact = form.save(commit=False)
             contact.save()
-            messages.add_message(request, messages.SUCCESS, 'Successfully saved')
+            #messages.add_message(request, messages.SUCCESS, 'Successfully saved')
             return redirect('contactpage')
     else:
         form = ContactForm()
