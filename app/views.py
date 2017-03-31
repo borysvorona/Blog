@@ -60,13 +60,13 @@ def contactpage(request):
 
     form = ContactForm(request.POST or None)
 
-    print (form.is_valid())
-    print (form.errors)
+    # print (form.is_valid())
+    # print (form.errors)
     if form.is_valid():
         contact = form.save(commit=False)
         contact.save()
         #messages.add_message(request, messages.SUCCESS, 'Successfully saved')
-        return redirect('contactpage')
+        # return redirect('contactpage')
 
     return render(request, 'blog/contact.html',
                   {'form': form})

@@ -1601,13 +1601,13 @@ form textarea.form-control:-ms-input-placeholder {
   color: #ccc;
 }
 /* line 21, ../sass/partials/_contact.sass */
-form input.form-control:focus,
-form textarea.form-control:focus {
-  outline: none;
-  border: none;
-  border-bottom: solid 3px;
-  box-shadow: none;
-}
+/*form input.form-control:focus,*/
+/*form textarea.form-control:focus {*/
+  /*outline: none;*/
+  /*border: none;*/
+  /*border-bottom: solid 3px;*/
+  /*box-shadow: none;*/
+/*}*/
 /* line 27, ../sass/partials/_contact.sass */
 form textarea.form-control {
   height: 100px;
