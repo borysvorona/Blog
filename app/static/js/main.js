@@ -131,6 +131,7 @@ $(document).ready(function(){
             }
         },
         phone: {
+            selector: "#id_phone",
             enabled: false,
             validators: {
                 notEmpty: {

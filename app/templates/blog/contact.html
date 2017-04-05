@@ -59,16 +59,24 @@
                             </div>
 
                             <!-- Text input-->
-                            <div class="form-group email-phone">
-                                {{ form.phone.errors }}
-                                <label class="col-md-4 control-label">Phone #</label>
-                                <div class="col-md-4 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                        {{ form.phone }}
+{#                            {{ phone_formset.management_form }}#}
+
+                            {% for phone_form in phone_formset %}
+                                <div class="form-group email-phone">
+                                    {% if phone_form.phone.errors %}
+                                        {% for error in phone_form.phone.errors %}
+                                            {{ error|escape }}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <label class="col-md-4 control-label">Phone #</label>
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                            {{ phone_form.phone }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endfor %}
 
                             <!-- Text input-->
                             <div class="form-group">

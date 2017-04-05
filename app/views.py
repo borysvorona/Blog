@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
 from django.utils import timezone
-from .models import Category, Post, Author
-from .forms import ContactForm
+from .models import Category, Post, Author, Contact
+from .forms import ContactForm, ContactPhoneFormSet
 
 def homepage(request):
     posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')
@@ -57,19 +56,20 @@ def category_detail(request, pk):
                                                             'posts': posts})
 
 def contactpage(request):
-
-    form = ContactForm(request.POST or None)
-
-    # print (form.is_valid())
-    # print (form.errors)
-    if form.is_valid():
-        contact = form.save(commit=False)
-        contact.save()
-        #messages.add_message(request, messages.SUCCESS, 'Successfully saved')
-        # return redirect('contactpage')
+    contact_form = ContactForm(request.POST or None)
+    phone_formset = ContactPhoneFormSet(instance=Contact())
+    if contact_form.is_valid():
+        contact = contact_form.save(commit=False)
+        phone_formset = ContactPhoneFormSet(request.POST, instance=contact)
+        if phone_formset.is_valid():
+            contact.save()
+            print(69)
+            print(phone_formset)
+            phone_formset.save()
 
     return render(request, 'blog/contact.html',
-                  {'form': form})
+                  {'form': contact_form,
+                   'phone_formset': phone_formset})
 
 def post_sidebar(request):
     post = Post.objects.get(author__main=True)

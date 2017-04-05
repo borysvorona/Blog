@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Post, Author, Category, Contact
+from .models import Post, Author, Category, Contact, ContactPhone
 
 class PostAdminForm(forms.ModelForm):
     class Meta:
@@ -34,16 +34,23 @@ class CategoryAdmin(admin.ModelAdmin):
     form = CategoryAdminForm
     list_display = ('title',)
 
+class ContactPhoneInline(admin.TabularInline):
+    model = ContactPhone
+    extra = 0
 
 class ContactAdminForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ('name', 'email', 'company',
-                  'phone', 'message')
+        fields = ('name', 'email',
+                  'company', 'message')
 
 class ContactAdmin(admin.ModelAdmin):
     form = ContactAdminForm
-    list_display = ('name', 'email', 'phone')
+    list_display = ('name', 'email')
+    inlines = [
+        ContactPhoneInline
+    ]
+
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Author, AuthorAdmin)

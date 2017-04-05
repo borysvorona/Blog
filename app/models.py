@@ -20,11 +20,17 @@ class Contact(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(null=True, blank=True)
     company = models.CharField(max_length=50)
-    phone = models.CharField(max_length=13, null=True, blank=True)
     message = models.TextField()
 
     def __str__(self):
         return self.email
+
+class ContactPhone(models.Model):
+    contact = models.ForeignKey('Contact')
+    phone = models.CharField(max_length=13, null=True, blank=True)
+
+    def __str__(self):
+        return self.phone
 
 class Category(models.Model):
     title = models.TextField(max_length=50, unique=True)
